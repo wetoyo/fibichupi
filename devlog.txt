@@ -1,1 +1,5 @@
+-- all 5/5/26 10:50
+started design doc
 
+-- kylel 5/5/26 10:50
+worked on setting up his droplet
