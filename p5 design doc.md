@@ -15,14 +15,16 @@ We are making a polymarket, using github commits as currency. Users will be able
 ## Python files
 
 * *\_\_init\_\_.py*: the main file; serves app  
-* *data.py*: handles SQLite3 database   
+* *data.py*: handles SQLite3 database and calling api
+* *logic.py*: handles backend logic for buying and selling, as well as price and probability updating
 * *\<TBA\>*:
 
 ## Templates
 
 * *login.html*: the user will be directed onto the login page first. They will be redirected to the homepage once they are logged in (automatic if they are already logged in). If they don’t have an account, they can be redirected to register.  
 * *register.html*: the user will be able to register. They will be redirected to the homepage once they do this.  
-* *home.html*: the homepage, which \<...\>  
+* *home.html*: the homepage, which \<...\>
+* *profile.html*: profile page, shows users previous bets and total P/L 
 * *\<TBA\>*:
 
 ## CSS files
