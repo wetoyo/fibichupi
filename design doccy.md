@@ -11,10 +11,10 @@
 
 | Name | Email | Primary Role | Secondary Role |
 |---|---|---|---|
-|Wesley Leon| | | |
+|Wesley Leon|wesleyl30@nycstudents.net| | |
 |Kyle Liu|kylel114@nycstudents.net| | |
-|Jake Liu| | | |
-|Mottaqi| | | |
+|Jake Liu|jakel110@nycstudents.net| | |
+|Mottaqi|mottaqia2789@nycstudents.net| | |
 
 ---
 
