@@ -43,7 +43,7 @@ Who will use this system?
 ## Core Features (Required for Final Submission)
 Features that **must** be completed:
 1. betting
-2.
+2. price graph
 
 ## Stretch Features (Only if MVP is Complete)
 1.
