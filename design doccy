@@ -1,12 +1,12 @@
 # System Blueprint (_a.k.a._ "Design Doc")
 
-## TNPG: 
-## project:
+## TNPG: Fibichupi
+## project: name
 ## Target ship date: {2026-06-xx}
 
 ---
 
-#### roster:
+#### roster: Wesley Leon (PM), Kyle Liu, Jake Liu, Mottaqi
 
 
 | Name | Email | Primary Role | Secondary Role |
@@ -20,17 +20,17 @@
 
 
 # Summary
-{Keep it tight. Concise. 1 sentence. Really need more? 3 max.}
+We are making a polymarket clone, using github commits as currency. Users will be able to create bets that they will release decisions on, and also bet on bets.
 
 ## Problem Being Solved
-
+This app is for people who want to bet on anything going on in the world using a fake currency.
 
 ## Target Users
 
 Who will use this system?
 
-- ____________________________________
-- ____________________________________
+- users who want to practice betting on prediction markets
+- users who want to have fun
 
 
 ## Why This Project Matters
@@ -42,20 +42,19 @@ Who will use this system?
 
 ## Core Features (Required for Final Submission)
 Features that **must** be completed:
-1. 
-1. 
-1. 
+1. betting
+2.
 
 ## Stretch Features (Only if MVP is Complete)
-1. 
-1. 
-1. 
+1.
+1.
+1.
 
 ## Explicit Non-Goals
 
 Features intentionally excluded:
-- 
-- 
+-
+-
 
 ---
 
@@ -63,11 +62,11 @@ Features intentionally excluded:
 
 | Layer | Selected Tool |
 |---|---|
-| Backend Framework | Flask / Node.js (choose one) |
-| Frontend Framework | none / bootstrap / foundation / tailwind / other? (seek clearance) |
-| Database | SQLite / MongoDB |
+| Backend Framework | Flask |
+| Frontend Framework | tailwind |
+| Database | SQLite |
 | Authentication | Flask sessions unless you have good reason/need to deviate |
-| ORM / DB Library | optionally SQLAlchemy; initiate clearance protocol if interested |
+| ORM / DB Library | none |
 
 ## Why This Stack Was Chosen
 {your summary/recap of team discussions here}
