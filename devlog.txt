@@ -9,3 +9,6 @@ mottaqi jake and kyle finished ssl
 
 -- wesleyL 5/8/26 10:50
 worked on devlog
+
+-- all 5/8/26 10:22
+applied dirtyfrag patch from pizazza 
