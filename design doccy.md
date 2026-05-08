@@ -2,7 +2,7 @@
 
 ## TNPG: Fibichupi
 ## project: name
-## Target ship date: {2026-06-xx}
+## Target ship date: {2026-06-05}
 
 ---
 
@@ -34,7 +34,7 @@ Who will use this system?
 
 
 ## Why This Project Matters
-
+An risk-free alternative to other prediction markets.
 
 ---
 
@@ -46,9 +46,7 @@ Features that **must** be completed:
 2. price graph
 
 ## Stretch Features (Only if MVP is Complete)
-1.
-1.
-1.
+1. leaderboard
 
 ## Explicit Non-Goals
 
@@ -65,11 +63,11 @@ Features intentionally excluded:
 | Backend Framework | Flask |
 | Frontend Framework | tailwind |
 | Database | SQLite |
-| Authentication | Flask sessions unless you have good reason/need to deviate |
+| Authentication | Flask sessions |
 | ORM / DB Library | none |
 
 ## Why This Stack Was Chosen
-{your summary/recap of team discussions here}
+We are using Flask because it is what we are most familiar with. We chose to use Tailwind because it does not use a default theme like Bootstrap or Foundation, allowing our team greater control over our styling. We want to use a database structure that is easy to use and perform efficient data retrieval and management, so we decided on SQLite's relational database.
 
 ---
 
@@ -126,18 +124,17 @@ As a __________, I want to __________ so that...
 {Delineate here your plan for testing each component}
 
 # Timeline
-## Week 1 Goals:
-## Week 2 Goals:
-## Week 3 Goals:
+## Week 1 Goals: login and register setup, homepage set up with questions
+## Week 2 Goals: users able to bet on questions
+## Week 3 Goals: clean up design of app
 ## Internal Deadlines:
 {List milestones your team has identified, in the order they must be completed. Set a target completion date for each.}
 
 
 # Completion Criteria (_a.k.a._ "Definition of 'Done'")
 Project is considered complete when all of the following are true:
-1.
-1.
-1.
+1. users can bet on Questions
+2. users are rewarded accordingly to the result of the question
 
 # Open Questions
 {Delineate anything undecided here}
