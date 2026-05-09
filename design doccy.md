@@ -11,10 +11,10 @@
 
 | Name | Email | Primary Role | Secondary Role |
 |---|---|---|---|
-|Wesley Leon|wesleyl30@nycstudents.net| | |
-|Kyle Liu|kylel114@nycstudents.net| | |
-|Jake Liu|jakel110@nycstudents.net| | |
-|Mottaqi|mottaqia2789@nycstudents.net| | |
+|Wesley Leon|wesleyl30@nycstudents.net|Backend|Project Management|
+|Kyle Liu|kylel114@nycstudents.net|Frontend|UI/UX|
+|Jake Liu|jakel110@nycstudents.net|Database Handling|Backend|
+|Mottaqi|mottaqia2789@nycstudents.net|Frontend|CSS|
 
 ---
 
@@ -51,8 +51,7 @@ Features that **must** be completed:
 ## Explicit Non-Goals
 
 Features intentionally excluded:
--
--
+- Real money betting
 
 ---
 
@@ -74,35 +73,49 @@ We are using Flask because it is what we are most familiar with. We chose to use
 # Team Ownership Plan
 
 Each member must own meaningful deliverables.
-
-| Team Member | Primary Ownership | Secondary Ownership | Specific Deliverables |
-|---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
-| | | | |
+| Team Member | Primary Ownership    | Secondary Ownership  | Specific Deliverables                            |
+| ----------- | -------------------- | -------------------- | ------------------------------------------------ |
+| Wesley Leon | Backend Logic        | Project Coordination | Betting engine, session handling |
+| Kyle Liu    | Frontend Development | UI/UX                | Homepage, market pages,|
+| Jake Liu    | Database Design      | Backend Support      | SQLite, Flask routes, market data storage|
+| Mottaqi     | Styling              | Frontend Support     | Tailwind styling, graphs integration|
 
 ---
 
 # Component map
 
-{Insert your mermaid(or equivalent)-generated diagram here}
+```mermaid
+graph TD
+
+A[Login] --> B[Register]
+A --> C[Homepage]
+
+B --> C
+C --> A
+
+C --> E[Browse Questions]
+C --> F[Profile Page]
+C --> G[Create Market]
+
+E --> H[Bet Page]
+
+H --> I[Place Bet]
+H --> J[View Price Graph]
+
+```
 
 # Site map
 
-{Insert your mermaid(or equivalent)-generated diagram here}
-eg...
-```
-Landing Page
-   ↓
-Login / Register
-   ↓
-Dashboard
-   ├── Feature A
-   ├── Feature B
-   └── Profile
-```
+```mermaid
+graph TD
+A[login.html] --> B[home.html]
+A --> C[register.html]
 
+C --> B
+
+B --> D[bet.html]
+B --> E[profile.html]
+```
 ## Key User Stories
 ### eg0
 As a __________, I want to __________ so that...
@@ -117,7 +130,47 @@ As a __________, I want to __________ so that...
 
 # Database Design
 
-{Insert your table/document organizational structure here}
+Users:
+
+| Column        | Type    | Description           |
+| ------------- | ------- | --------------------- |
+| id            | INTEGER | Primary key           |
+| username      | TEXT    | Unique username       |
+| password_hash | TEXT    | Hashed password       |
+| balance       | INTEGER | User currency balance |
+| total_commits | INTEGER | Total github commits  |
+
+Markets:
+
+| Column      | Type    | Description             |
+| ----------- | ------- | ----------------------- |
+| id          | INTEGER | Primary key             |
+| title       | TEXT    | Market question         |
+| description | TEXT    | Additional details      |
+| creator_id  | INTEGER | User who created market |
+| status      | TEXT    | open/resolved           |
+| result      | TEXT    | yes/no result           |
+
+Bets:
+
+| Column    | Type    | Description         |
+| --------- | ------- | ------------------- |
+| id        | INTEGER | Primary key         |
+| user_id   | INTEGER | User placing bet    |
+| market_id | INTEGER | Market being bet on |
+| side      | TEXT    | yes/no              |
+| amount    | INTEGER | Bet amount          |
+| timestamp | DATETIME| Time of bet         |
+
+Price History:
+
+| Column    | Type     | Description    |
+| --------- | -------- | -------------- |
+| id        | INTEGER  | Primary key    |
+| market_id | INTEGER  | Related market |
+| timestamp | DATETIME | Time of update |
+| price     | REAL     | Market price   |
+
 
 
 # Testing Plan
@@ -135,6 +188,7 @@ As a __________, I want to __________ so that...
 Project is considered complete when all of the following are true:
 1. users can bet on Questions
 2. users are rewarded accordingly to the result of the question
+3. signup is linked to github to prevent market manipulation 
 
 # Open Questions
-{Delineate anything undecided here}
+Should we make realtime price updating
