@@ -118,13 +118,13 @@ B --> E[profile.html]
 ```
 ## Key User Stories
 ### eg0
-As a __________, I want to __________ so that...
+As a new user, I want to register with my GitHub account so that my commit history can be verified and used as currency.
 
 ### eg1
-As a __________, I want to __________ so that...
+As a registered user, I want to browse open markets so that I can test my predictions without risking real money.
 
 ### eg2
-As a __________, I want to __________ so that...
+As a market creator, I want to create a yes/no question and later resolve it so that bettors are paid out correctly.
 
 
 
