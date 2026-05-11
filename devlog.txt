@@ -1,13 +1,13 @@
 -- all 5/5/26 10:50
 started design doc
 
--- kylel 5/5/26 10:50
+-- kylel114 5/5/26 10:50
 worked on setting up his droplet
 
 -- all 5/7/26 10:50
 mottaqi jake and kyle finished ssl
 
--- wesleyL 5/8/26 10:50
+-- wesleyl30 5/8/26 10:50
 worked on devlog
 
 -- all 5/8/26 10:22
