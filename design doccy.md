@@ -174,7 +174,51 @@ Price History:
 
 
 # Testing Plan
-{Delineate here your plan for testing each component}
+
+## Authentication & Registration
+
+| Test | How to test | Pass condition |
+|---|---|---|
+| User can register with username + password | Submit register form with valid inputs | Redirected to home, user row exists in DB |
+| Duplicate username is rejected | Register twice with same username | Error message shown, no duplicate row |
+| Login with correct credentials succeeds | Submit login form with valid user | Session cookie set, redirected to home |
+| Login with wrong password fails | Submit login form with bad password | Error shown, no session created |
+| Unauthenticated users can't access protected pages | Navigate to /profile or /bet without session | Redirected to login |
+
+## Market Creation & Resolution
+
+| Test | How to test | Pass condition |
+|---|---|---|
+| Logged-in user can create a market | Submit create market form with title + description | Market appears in DB with status = open, creator_id set correctly |
+| Market appears on browse page | Navigate to home after creating market | New market visible in list |
+| Creator can resolve market as yes or no | Creator clicks resolve, selects outcome | Market status = resolved, result column set |
+| Non-creator cannot resolve market | Log in as different user, attempt to resolve | Option not shown, or 403 returned if attempted via URL |
+
+## Betting Logic & Payouts
+
+| Test | How to test | Pass condition |
+|---|---|---|
+| User can place a yes or no bet | Open a market, submit a bet with an amount | Bet row added to DB, user balance decremented |
+| User cannot bet more than their balance | Submit bet amount exceeding current balance | Error shown, balance unchanged |
+| Winners are paid out after resolution | Resolve market, check winning users' balances | Winners' balances increase by correct amount |
+| Losers receive nothing after resolution | Check losing users' balances after resolution | Balance unchanged from before resolution |
+| Bets on a resolved market are rejected | Attempt to bet on a resolved market | Error returned, no bet row added |
+
+## Data Integrity
+
+| Test | How to test | Pass condition |
+|---|---|---|
+| Price history updates when a bet is placed | Place a bet, query price_history table | New row with correct market_id, timestamp, price |
+| Deleting a user doesn't corrupt market data | Remove a user who created a market | Market and bets still exist, no orphaned FK errors |
+
+## Frontend / Price Graph
+
+| Test | How to test | Pass condition |
+|---|---|---|
+| Price graph renders on bet page | Navigate to a market with at least one bet | Graph visible with at least one data point |
+| Graph updates after a new bet is placed | Place a bet, reload bet page | New data point appears on graph |
+| Profile page shows correct balance and bet history | Place bets, visit profile page | Balance and past bets listed accurately |
+
 
 # Timeline
 ## Week 1 Goals: login and register setup, homepage set up with questions
