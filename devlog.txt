@@ -15,3 +15,12 @@ applied dirtyfrag patch from pizazza
 
 -- mottaqia2789 5/11/26 00:39
 added testing plan and key user stories
+
+-- wesleyl30 5/12/26 10:50
+fixed issue with droplet
+
+-- jakel110 5/12/26 10:50
+reviewed design doc
+
+-- mottaqia2789 5/12/26 10:50
+tested styling options and went over javascript
