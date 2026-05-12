@@ -85,6 +85,7 @@ Each member must own meaningful deliverables.
 # Component map
 
 ```mermaid
+
 graph TD
 
 A[app.py]
@@ -102,7 +103,6 @@ E --> F[(users)]
 E --> G[(markets)]
 E --> H[(bets)]
 E --> I[(price_history)]
-
 ```
 
 # Site map
