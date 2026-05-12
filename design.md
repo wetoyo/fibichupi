@@ -87,20 +87,21 @@ Each member must own meaningful deliverables.
 ```mermaid
 graph TD
 
-A[Login] --> B[Register]
-A --> C[Homepage]
+A[app.py]
 
-B --> C
-C --> A
+A --> B[auth.py]
+A --> C[logic.py]
+A --> D[data.py]
 
-C --> E[Browse Questions]
-C --> F[Profile Page]
-C --> G[Create Market]
+C --> D
+B --> D
 
-E --> H[Bet Page]
+D --> E[(SQLite Database)]
 
-H --> I[Place Bet]
-H --> J[View Price Graph]
+E --> F[(users)]
+E --> G[(markets)]
+E --> H[(bets)]
+E --> I[(price_history)]
 
 ```
 
