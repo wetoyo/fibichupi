@@ -85,7 +85,6 @@ Each member must own meaningful deliverables.
 # Component map
 
 ```mermaid
-
 graph TD
 
 A[app.py]
