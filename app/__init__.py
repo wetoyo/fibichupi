@@ -11,6 +11,7 @@ def homepage():
     
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    error_msg = ""
     if request.method == "POST":
         username = request.form.get("user_id").strip()
         password = request.form.get("password").strip()
