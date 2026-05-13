@@ -2,7 +2,12 @@
 import sqlite3
 import random
 DB_FILE = "database.db"
-
+def create_tbs():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute(f"CREATE TABLE IF NOT EXISTS user(user_id TEXT PRIMARY KEY, password TEXT)")
+    db.close()
+create_tbs()
 #checks if username already in db
 def user_exists(username):
     db = sqlite3.connect(DB_FILE)
@@ -46,7 +51,7 @@ def register(username, password):
     db.close()
     return "Registered"
 
-#deletes account 
+#deletes account
 def delete_acc(username):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()

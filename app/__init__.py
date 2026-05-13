@@ -1,5 +1,5 @@
-
 from flask import Flask, render_template, request, session, redirect, url_for
+import auth
 app = Flask(__name__)
 app.secret_key = '5d13cfb7ed33261d8f37a3d1b54632e67c328d6f674a174cefd31ac5d1938e66'
 
@@ -8,7 +8,7 @@ def homepage():
     if "user_id" not in session:
         return redirect(url_for("login"))
     return render_template("home.html")
-    
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     error_msg = ""
@@ -26,4 +26,4 @@ def login():
     return render_template("login.html", error = error_msg)
 if __name__ == "__main__":
     app.debug = True
-    app.run() 
+    app.run()
