@@ -36,3 +36,6 @@ Devlog: JavaScript
 We looked at the consistent use of const/let, strict equality, and modular ES structure. Devos found the biggest value in reduced ambiguity.
 File reference:
 N/A, we havent started coding yet
+
+--all 5/13/26 10:47
+we did a bit of pair programming and wesley added a basic auth.py file and login functionality. registering still not implemented. afterwards, we reviewed chart js syntax. 
