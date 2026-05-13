@@ -24,3 +24,15 @@ reviewed design doc
 
 -- mottaqia2789 5/12/26 10:50
 tested styling options and went over javascript
+
+--all 5/12/26 21:38
+ devlog Python 
+We looked at naming conventions and the separation of logic vs data layers. This improved readability.
+One of Guido’s key insights is that code is read much more often than it is written.
+File reference:
+N/A, we havent started coding yet
+
+Devlog: JavaScript Style Guide
+We looked at the consistent use of const/let, strict equality, and modular ES structure. Devos found the biggest value in reduced ambiguity.
+File reference:
+N/A, we havent started coding yet
