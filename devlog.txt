@@ -25,6 +25,7 @@ reviewed design doc
 -- mottaqia2789 5/12/26 10:50
 tested styling options and went over javascript
 
+
 --all 5/12/26 21:38
 Devlog: Python 
 We looked at naming conventions and the separation of logic vs data layers. This improved readability.
@@ -42,3 +43,6 @@ we did a bit of pair programming and wesley added a basic auth.py file and login
 
 -- mottaqia2789 5/13/26 22:35
 created register functionality
+
+-- wesleyl30 5/14/26 10:50
+fixed register and deployed to droplet
