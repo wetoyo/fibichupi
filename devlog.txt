@@ -39,3 +39,6 @@ N/A, we havent started coding yet
 
 --all 5/13/26 10:47
 we did a bit of pair programming and wesley added a basic auth.py file and login functionality. registering still not implemented. afterwards, we reviewed chart js syntax. 
+
+-- mottaqia2789 5/13/26 22:35
+created register functionality
