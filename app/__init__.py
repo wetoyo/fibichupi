@@ -24,6 +24,21 @@ def login():
         else:
             error_msg = "User does not exist. Please register."
     return render_template("login.html", error = error_msg)
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    error_msg = ""
+    if request.method == "POST":
+        username = request.form.get("user_id").strip()
+        password = request.form.get("password").strip()
+        result = auth.register(username, password)
+        if result == "Registered":
+            return redirect(url_for("login"))
+        else:
+            error_msg = result
+    return render_template("register.html", error=error_msg)
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
