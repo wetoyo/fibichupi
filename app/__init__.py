@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-import auth
+from . import auth
 app = Flask(__name__)
 app.secret_key = '5d13cfb7ed33261d8f37a3d1b54632e67c328d6f674a174cefd31ac5d1938e66'
 
