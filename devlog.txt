@@ -49,3 +49,6 @@ fixed register and deployed to droplet
 
 -- jakeL110 5/15/26 10:51
 make build_db.py
+
+-- kylel114 5/15/26 10:47
+added bet.html and profile.html
