@@ -46,3 +46,6 @@ created register functionality
 
 -- wesleyl30 5/14/26 10:50
 fixed register and deployed to droplet
+
+-- kylel114 5/15/26 10:47
+added bet.html and profile.html
