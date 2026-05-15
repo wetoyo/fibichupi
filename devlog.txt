@@ -47,8 +47,15 @@ created register functionality
 -- wesleyl30 5/14/26 10:50
 fixed register and deployed to droplet
 
+-- kylel114 5/15/26 10:47
+added bet.html and profile.html
+
 -- jakeL110 5/15/26 10:51
 make build_db.py
 
--- kylel114 5/15/26 10:47
-added bet.html and profile.html
+-- wesleyl30 5/15/26 10:54
+figured uot github event imeplementation ; didnt implement
+
+-- mottaqia2789 5/15/26 10:54
+started reading chartjs syntax
+
