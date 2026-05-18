@@ -42,11 +42,3 @@ def register():
 if __name__ == "__main__":
     app.debug = True
     app.run()
-
-@app.route("/bet", methods=["GET", "POST"])
-def bet():
-    render_template("bet.html", error = error_msg)
-
-@app.route("/profile", methods=["GET", "POST"])
-def bet():
-    render_template("profile.html", error = error_msg)
