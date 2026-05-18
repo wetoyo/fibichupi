@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
-from . import auth
+import auth
 app = Flask(__name__)
 app.secret_key = '5d13cfb7ed33261d8f37a3d1b54632e67c328d6f674a174cefd31ac5d1938e66'
 
@@ -42,3 +42,11 @@ def register():
 if __name__ == "__main__":
     app.debug = True
     app.run()
+
+@app.route("/bet", methods=["GET", "POST"])
+def bet():
+    render_template("bet.html", error = error_msg)
+
+@app.route("/profile", methods=["GET", "POST"])
+def bet():
+    render_template("profile.html", error = error_msg)
