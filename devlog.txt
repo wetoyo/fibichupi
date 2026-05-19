@@ -11,7 +11,7 @@ mottaqi jake and kyle finished ssl
 worked on devlog
 
 -- all 5/8/26 10:22
-applied dirtyfrag patch from pizazza 
+applied dirtyfrag patch from pizazza
 
 -- mottaqia2789 5/11/26 00:39
 added testing plan and key user stories
@@ -27,7 +27,7 @@ tested styling options and went over javascript
 
 
 --all 5/12/26 21:38
-Devlog: Python 
+Devlog: Python
 We looked at naming conventions and the separation of logic vs data layers. This improved readability.
 One of Guido’s key insights is that code is read much more often than it is written.
 File reference:
@@ -39,7 +39,7 @@ File reference:
 N/A, we havent started coding yet
 
 --all 5/13/26 10:47
-we did a bit of pair programming and wesley added a basic auth.py file and login functionality. registering still not implemented. afterwards, we reviewed chart js syntax. 
+we did a bit of pair programming and wesley added a basic auth.py file and login functionality. registering still not implemented. afterwards, we reviewed chart js syntax.
 
 -- mottaqia2789 5/13/26 22:35
 created register functionality
@@ -74,3 +74,5 @@ worked on chargejs
 -- wesleyl30 5/19/26 10:50
 added github fetch events file
 
+-- jakel110 5/19/26 10:48
+create data.py for db operations

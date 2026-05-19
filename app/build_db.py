@@ -11,6 +11,7 @@ c.executescript("""
         title TEXT,
         description TEXT,
         creator_id INTEGER,
+        FOREIGN KEY(creator_id) REFERENCES user(user_id),
         status TEXT,
         result TEXT
     );
@@ -19,6 +20,7 @@ c.executescript("""
         id INTEGER PRIMARY KEY,
         user_id INTEGER,
         market_id INTEGER,
+        FOREIGN KEY(market_id) REFERENCES markets(id),
         side TEXT,
         amount INTEGER,
         timestamp DATETIME
@@ -27,6 +29,7 @@ c.executescript("""
     CREATE TABLE price_history (
         id INTEGER PRIMARY KEY,
         market_id INTEGER,
+        FOREIGN KEY(market_id) REFERENCES markets(id),
         timestamp DATETIME,
         price REAL
     );
