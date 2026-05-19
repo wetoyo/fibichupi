@@ -39,6 +39,18 @@ def register():
             error_msg = result
     return render_template("register.html", error=error_msg)
 
+@app.route("/bet", methods=["GET", "POST"])
+def homepage():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    return render_template("bet.html")
+
+@app.route("/profile", methods=["GET", "POST"])
+def homepage():
+    if "user_id" not in session:
+        return redirect(url_for("login"))
+    return render_template("profile.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
