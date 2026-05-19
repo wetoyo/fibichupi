@@ -25,6 +25,9 @@ reviewed design doc
 -- mottaqia2789 5/12/26 10:50
 tested styling options and went over javascript
 
+-- wesleyl30 5/19/26 10:50
+fixed issue with droplet
+
 
 --all 5/12/26 21:38
 Devlog: Python 
