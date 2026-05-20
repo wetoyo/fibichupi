@@ -1,11 +1,13 @@
 ##placeholder from p0
 import sqlite3
 import random
+import fetch_git
 DB_FILE = "database.db"
 def create_tbs():
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute(f"CREATE TABLE IF NOT EXISTS user(user_id TEXT PRIMARY KEY, password TEXT)")
+    c.execute(f"CREATE TABLE IF NOT EXISTS user(user_id TEXT PRIMARY KEY, password TEXT, commits INTEGER, lastcomm TEXT)")
+    db.commit()
     db.close()
 create_tbs()
 #checks if username already in db
@@ -46,7 +48,9 @@ def register(username, password):
     if user_exists(username):
         db.close()
         return "Username is already taken."
-    c.execute("INSERT INTO user (user_id, password) VALUES (?, ?)", (username, password))
+    coms, date = fetch_git.get_commits(username)
+    c.execute("INSERT INTO user (user_id, password, commits, lastcomm) VALUES (?, ?, ?, ?)", (username, password, coms, date))
+    print(coms)
     db.commit()
     db.close()
     return "Registered"
@@ -56,7 +60,5 @@ def delete_acc(username):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     c.execute("DELETE FROM user WHERE user_id = ?", (username,))
-    c.execute("DELETE FROM blog WHERE user_id = ?", (username,))
-    c.execute("DELETE FROM page WHERE user_id = ?", (username,))
     db.commit()
     db.close()
