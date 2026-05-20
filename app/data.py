@@ -1,4 +1,5 @@
 import sqlite3
+from fetch_git import get_commits
 
 DB_FILE = "database.db"
 
@@ -28,3 +29,13 @@ def create_market(id, title, description, creator_id, status, result):
     db.close()
 
     return f"market_id {id} created"
+
+def update_commits(user_id):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    command = "UPDATE user SET commits = ? WHERE user_id = ?"
+    cooms, date = (get_commits(user_id, user_id)
+    c.execute(command, vars)
+
+    db.commit()
