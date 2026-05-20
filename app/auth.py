@@ -50,7 +50,6 @@ def register(username, password):
         return "Username is already taken."
     coms, date = fetch_git.get_commits(username)
     c.execute("INSERT INTO user (user_id, password, commits, lastcomm) VALUES (?, ?, ?, ?)", (username, password, coms, date))
-    print(coms)
     db.commit()
     db.close()
     return "Registered"
