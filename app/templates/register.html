@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+{% extends "header.html" %}
 
-<html>
-<title>Register</title>
+{% block title %} Register {% endblock %}
 
-Create a new account by entering your credentials.<br><br>
+{% block content %}
+<p> Create a new account by entering your credentials. </p>
 
 <form method="POST">
   <input type="text" name="user_id" placeholder="Username" required> <br>
@@ -11,8 +11,7 @@ Create a new account by entering your credentials.<br><br>
   <input type="submit" value="Register">
 </form>
 
-{{ error }}<br><br>
+<p> {{ error }} </p>
 
-Already have an account? <a href="/login">Login</a>
-
-</html>
+<p> Already have an account? <a href="/login">Login</a> </p>
+{% endblock %}
