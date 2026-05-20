@@ -34,8 +34,16 @@ def update_commits(user_id):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
-    command = "UPDATE user SET commits = ? WHERE user_id = ?"
-    cooms, date = (get_commits(user_id, user_id)
+    command = "UPDATE user SET commits = commits + ? WHERE user_id = ?"
+    coms, date = get_commits(user_id)
+    vars = (coms, user_id)
+    c.execute(command, vars)
+    
+    command = "UPDATE user SET lastcomm = ? WHERE user_id = ?"
+    vars = (date, user_id)
     c.execute(command, vars)
 
     db.commit()
+    db.close()
+
+    return f"commit amount for {user_id} updated"

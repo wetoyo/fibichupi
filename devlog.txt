@@ -76,3 +76,6 @@ added github fetch events file
 
 -- jakel110 5/19/26 10:48
 create data.py for db operations
+
+-- jakel110 5/20/26 16:49
+create update_commits wrapper for get_commits
