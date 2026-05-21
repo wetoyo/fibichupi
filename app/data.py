@@ -38,7 +38,7 @@ def update_commits(user_id):
     coms, date = get_commits(user_id)
     vars = (coms, user_id)
     c.execute(command, vars)
-    
+
     command = "UPDATE user SET lastcomm = ? WHERE user_id = ?"
     vars = (date, user_id)
     c.execute(command, vars)
@@ -47,3 +47,9 @@ def update_commits(user_id):
     db.close()
 
     return f"commit amount for {user_id} updated"
+
+def get_user_bets():
+    return 0
+
+def get_user_markets():
+    return 0
