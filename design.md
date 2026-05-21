@@ -1,7 +1,7 @@
 # System Blueprint (_a.k.a._ "Design Doc")
 
 ## TNPG: Fibichupi
-## project: name
+## project: iMarket
 ## Target ship date: {2026-06-01}
 
 ---
