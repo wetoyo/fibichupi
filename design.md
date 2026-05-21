@@ -137,8 +137,8 @@ Users:
 | id            | INTEGER | Primary key           |
 | username      | TEXT    | Unique username       |
 | password_hash | TEXT    | Hashed password       |
-| balance       | INTEGER | User currency balance |
-| total_commits | INTEGER | Total github commits  |
+| last_comm     | TEXT    | last commit date      |
+| balance       | INTEGER | # of currency         |
 
 Markets:
 
