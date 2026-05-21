@@ -69,40 +69,23 @@ def update_commits(user_id):
     try:
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
-
-<<<<<<< HEAD
         command = "UPDATE user SET commits = commits + ? WHERE user_id = ?"
         coms, date = get_commits(user_id)
         vars = (coms, user_id)
         c.execute(command, vars)
-=======
-    command = "UPDATE user SET commits = commits + ? WHERE user_id = ?"
-    coms, date = get_commits(user_id)
-    vars = (coms, user_id)
-    c.execute(command, vars)
-
-    command = "UPDATE user SET lastcomm = ? WHERE user_id = ?"
-    vars = (date, user_id)
-    c.execute(command, vars)
->>>>>>> c8381e2d4f713d7c8c4f0e69abc1451223fce6de
 
         command = "UPDATE user SET lastcomm = ? WHERE user_id = ?"
         vars = (date, user_id)
         c.execute(command, vars)
-
-<<<<<<< HEAD
         db.commit()
         db.close()
-
-        return f"commit amount for {user_id} updated"
     except sqlite.Error as e:
         print(f"SQLite error in update_commits(): {e}")
-=======
-    return f"commit amount for {user_id} updated"
+    finally:
+        return f"commit amount for {user_id} updated"
 
 def get_user_bets():
     return 0
 
 def get_user_markets():
     return 0
->>>>>>> c8381e2d4f713d7c8c4f0e69abc1451223fce6de
