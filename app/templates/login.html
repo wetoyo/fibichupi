@@ -1,17 +1,22 @@
 {% extends "header.html" %}
 
-{% block title %} Login {% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
-<p> Login to your existing account by entering your credentials. </p>
+<div>
+  <h1>Login</h1>
+  <p>Enter your credentials.</p>
 
-<form method="POST">
-  <input type="text" name="user_id" placeholder="Username" required> <br>
-  <input type="password" name="password" placeholder="Password" required> <br><br>
-  <input type="submit" name="sub1" value="Login">
-</form>
+  <form method="POST">
+    <input type="text" name="user_id" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <button type="submit" name="sub1">Login</button>
+  </form>
 
-<p> {{ error }} </p>
+  {% if error %}<p>{{ error }}</p>{% endif %}
 
-<p> Don't have an account? <a href="/register">Register</a> </p>
+  <p>Don't have an account?
+    <a href="/register">Register</a>
+  </p>
+</div>
 {% endblock %}
