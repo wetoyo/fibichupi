@@ -24,6 +24,7 @@ We are making a polymarket,  using github commits as currency. Users will be abl
 
 ### Launch Codes:
 In the terminal run the following command:
+- `$ python build_db.py`
 - `$ flask run`
 
 ### Launch Website
