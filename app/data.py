@@ -16,7 +16,7 @@ def create_bet(id, user_id, market_id, side, amount, timestamp):
         db.close()
 
         return f"bet_id {id} created"
-    except sqlite.Error as e:
+    except sqlite3.Error as e:
         print(f"SQLite error in create_bet(): {e}")
 
 def create_market(id, title, description, creator_id, status, result):
@@ -24,7 +24,7 @@ def create_market(id, title, description, creator_id, status, result):
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
 
-        command = "INSERT INTO bets VALUES (?, ?, ?, ?, ?, ?)"
+        command = "INSERT INTO markets VALUES (?, ?, ?, ?, ?, ?)"
         vars = (id, title, description, creator_id, status, result)
         c.execute(command, vars)
 
@@ -32,7 +32,7 @@ def create_market(id, title, description, creator_id, status, result):
         db.close()
 
         return f"market_id {id} created"
-    except sqlite.Error as e:
+    except sqlite3.Error as e:
         print(f"SQLite error in create_market(): {e}")
 
 def get_market_bets(market_id):
@@ -41,13 +41,13 @@ def get_market_bets(market_id):
         c = db.cursor()
 
         command = "SELECT side, amount FROM bets WHERE market_id = ?"
-        vars = (market_id)
-        results = c.execute(commands, vars).fetchall()
+        vars = (market_id,)
+        results = c.execute(command, vars).fetchall()
 
         db.close()
 
         return results
-    except sqlite.Error as e:
+    except sqlite3.Error as e:
         print(f"SQLite error in get_market_bets(): {e}")
 
 def get_market_price(market_id, timestamp):
@@ -57,12 +57,12 @@ def get_market_price(market_id, timestamp):
 
         command = "SELECT price FROM price_history WHERE market_id = ? AND timestamp = ?"
         vars = (market_id, timestamp)
-        results = c.execute(commands, vars).fetchall()
+        results = c.execute(command, vars).fetchall()
 
         db.close()
 
         return results
-    except sqlite.Error as e:
+    except sqlite3.Error as e:
         print(f"SQLite error in get_market_price(): {e}")
 
 def update_commits(user_id):
@@ -79,10 +79,10 @@ def update_commits(user_id):
         c.execute(command, vars)
         db.commit()
         db.close()
-    except sqlite.Error as e:
-        print(f"SQLite error in update_commits(): {e}")
-    finally:
         return f"commit amount for {user_id} updated"
+    except sqlite3.Error as e:
+        print(f"SQLite error in update_commits(): {e}")
+        return f"failed to update commits for {user_id}"
 
 def get_user_bets():
     return 0

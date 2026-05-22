@@ -80,6 +80,11 @@ create data.py for db operations
 -- jakel110 5/20/26 16:49
 create update_commits wrapper for get_commits
 
--- jakel110 5/21/26 10:53
-error handling in data.py
-get_market_price() and get_market_bets()
+-- wesleyl30 5/21/26 10:53
+fixed up data.py
+
+-- mottaqia2789 5/21/26 10:54
+worked on chargejs
+
+-- kylel114 5/21/26 10:54
+worked on finishing the routes

@@ -11,27 +11,27 @@ c.executescript("""
         title TEXT,
         description TEXT,
         creator_id INTEGER,
-        FOREIGN KEY(creator_id) REFERENCES user(user_id),
         status TEXT,
-        result TEXT
+        result TEXT,
+        FOREIGN KEY(creator_id) REFERENCES user(user_id)
     );
     DROP TABLE IF EXISTS bets;
     CREATE TABLE bets (
         id INTEGER PRIMARY KEY,
         user_id INTEGER,
         market_id INTEGER,
-        FOREIGN KEY(market_id) REFERENCES markets(id),
         side TEXT,
         amount INTEGER,
-        timestamp DATETIME
+        timestamp DATETIME,
+        FOREIGN KEY(market_id) REFERENCES markets(id)
     );
     DROP TABLE IF EXISTS price_history;
     CREATE TABLE price_history (
         id INTEGER PRIMARY KEY,
         market_id INTEGER,
-        FOREIGN KEY(market_id) REFERENCES markets(id),
         timestamp DATETIME,
-        price REAL
+        price REAL,
+        FOREIGN KEY(market_id) REFERENCES markets(id)
     );
 """)
 
