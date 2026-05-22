@@ -39,17 +39,84 @@ def register():
             error_msg = result
     return render_template("register.html", error=error_msg)
 
-@app.route("/bet", methods=["GET", "POST"])
-def bet():
-    if "user_id" not in session:
-        return redirect(url_for("login"))
-    return render_template("bet.html")
+@app.route("/logout")
+def logout():
+    session.pop("user_id", None)
+    return redirect(url_for("login"))
 
-@app.route("/profile", methods=["GET", "POST"])
-def profile():
-    if "user_id" not in session:
+@app.route("/create_market", methods=["GET", "POST"])
+def create_market():
+    if not require_login():
         return redirect(url_for("login"))
-    return render_template("profile.html")
+    error_msg = ""
+    if request.method == "POST":
+        title = request.form.get("title", "").strip()
+        description = request.form.get("description", "").strip()
+        if not title:
+            error_msg = "Title is required."
+        else:
+            mid = data.create_market(title, description, current_user())
+            return redirect(url_for("market", market_id=mid))
+    return render_template("create_market.html", error=error_msg, user=current_user())
+
+@app.route("/market/<int:market_id>", methods=["GET"])
+def market(market_id):
+    if not require_login():
+        return redirect(url_for("login"))
+    m = data.get_market(market_id)
+    if not m:
+        return redirect(url_for("homepage"))
+    totals = data.get_market_totals(market_id)
+    price = data.current_price(market_id)
+    bets = data.get_market_bets(market_id)
+    return render_template(
+        "bet.html",
+        market=m,
+        totals=totals,
+        price=price,
+        bets=bets,
+        user=current_user(),
+        balance=data.get_balance(current_user()),
+        is_creator=(m["creator_id"] == current_user()),
+    )
+
+@app.route("/market/<int:market_id>/bet", methods=["POST"])
+def place_bet(market_id):
+    if not require_login():
+        return redirect(url_for("login"))
+    side = request.form.get("side")
+    try:
+        amount = int(request.form.get("amount", "0"))
+    except ValueError:
+        amount = 0
+    result = data.place_bet(current_user(), market_id, side, amount)
+    if result != "ok":
+        flash(result)
+    return redirect(url_for("market", market_id=market_id))
+
+@app.route("/market/<int:market_id>/resolve", methods=["POST"])
+def resolve(market_id):
+    if not require_login():
+        return redirect(url_for("login"))
+    result_side = request.form.get("result")
+    msg = data.resolve_market(market_id, result_side, current_user())
+    if msg != "ok":
+        flash(msg)
+    return redirect(url_for("market", market_id=market_id))
+
+
+@app.route("/profile", methods=["GET"])
+def profile():
+    if not require_login():
+        return redirect(url_for("login"))
+    user = current_user()
+    return render_template(
+        "profile.html",
+        user=user,
+        balance=data.get_balance(user),
+        bets=data.get_user_bets(user),
+        markets=data.get_user_markets(user),
+    )
 
 if __name__ == "__main__":
     app.debug = True
