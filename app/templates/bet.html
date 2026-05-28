@@ -1,1 +1,128 @@
-bet
+{% extends "header.html" %}
+
+{% block title %}{{ market.title }}{% endblock %}
+
+{% block content %}
+<div>
+    <a href="/">&larr; Markets</a>
+</div>
+
+<div>
+    <div>
+        <h1>{{ market.title }}</h1>
+        <div>
+            <div>{{ (price * 100) | round(0, 'floor') | int }}%</div>
+            <div>YES probability</div>
+        </div>a
+    </div>
+
+    {% if market.description %}
+    <p>{{ market.description }}</p>
+    {% endif %}
+
+    <p>Created by {{ market.creator_id }}</p>
+
+    {% if market.status == 'resolved' %}
+    <div>
+        Resolved:
+        <span>{{ market.result | upper }}</span>
+    </div>
+    {% endif %}
+</div>
+
+<div>
+    <h2>Price history</h2>
+    <canvas id="priceChart" height="100"></canvas>
+</div>
+
+<div>
+    <div>
+        <div>YES pool</div>
+        <div>{{ totals.yes }}</div>
+    </div>
+
+    <div>
+        <div>NO pool</div>
+        <div>{{ totals.no }}</div>
+    </div>
+</div>
+
+{% if market.status == 'open' %}
+<div>
+    <h2>Place a bet</h2>
+
+    <form method="POST" action="/market/{{ market.id }}/bet">
+        <div>
+            <label>Side</label>
+
+            <select name="side">
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
+            </select>
+        </div>
+
+        <div>
+            <label>Amount (commits)</label>
+
+            <input type="number" name="amount" min="1" max="{{ balance }}" required>
+        </div>
+
+        <button type="submit">Bet</button>
+
+        <span>Balance: {{ balance }}</span>
+    </form>
+</div>
+
+{% if is_creator %}
+<div>
+    <h2>Resolve market (creator only)</h2>
+
+    <form method="POST" action="/market/{{ market.id }}/resolve">
+        <select name="result">
+            <option value="yes">YES</option>
+            <option value="no">NO</option>
+        </select>
+
+        <button type="submit" onclick="return confirm('Resolve this market? This cannot be undone.')">
+            Resolve
+        </button>
+    </form>
+</div>
+{% endif %}
+{% endif %}
+
+<div>
+    <h2>Recent bets</h2>
+
+    {% if bets %}
+    <table>
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Side</th>
+                <th>Amount</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for b in bets %}
+            <tr>
+                <td>{{ b.user_id }}</td>
+                <td>{{ b.side | upper }}</td>
+                <td>{{ b.amount }}</td>
+                <td>{{ b.timestamp[:19] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No bets yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/market.js') }}"></script>
+{% endblock %}

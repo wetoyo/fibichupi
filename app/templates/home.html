@@ -1,1 +1,47 @@
-home
+{% extends "header.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Markets</h1>
+
+    <a href="/create_market">+ New Market</a>
+</div>
+
+{% if markets %}
+<div>
+    {% for m in markets %}
+    <a href="/market/{{ m.id }}">
+        <div>
+            <div>
+                <div>
+                    <h2>{{ m.title }}</h2>
+
+                    {% if m.status == 'resolved' %}
+                    <span>resolved: {{ m.result }}</span>
+                    {% endif %}
+                </div>
+
+                {% if m.description %}
+                <p>{{ m.description }}</p>
+                {% endif %}
+
+                <p>by {{ m.creator_id }}</p>
+            </div>
+
+            <div>
+                <div>{{ (m.price * 100) | round(0, 'floor') | int }}%</div>
+                <div>YES</div>
+            </div>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p>
+    No markets yet.
+    <a href="/create_market">Create the first one!</a>
+</p>
+{% endif %}
+{% endblock %}

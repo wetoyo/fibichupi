@@ -1,1 +1,33 @@
-create_market
+{% extends "header.html" %}
+
+{% block title %}Create Market{% endblock %}
+
+{% block content %}
+<div>
+    <a href="/">&larr; Markets</a>
+</div>
+
+<div>
+    <h1>Create a market</h1>
+
+    <form method="POST">
+        <div>
+            <label>Question</label>
+
+            <input type="text" name="title" required placeholder="Will X happen by Y?">
+        </div>
+
+        <div>
+            <label>Description</label>
+
+            <textarea name="description" rows="4" placeholder="Resolution criteria, details, etc."></textarea>
+        </div>
+
+        {% if error %}
+        <p>{{ error }}</p>
+        {% endif %}
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+{% endblock %}

@@ -48,8 +48,12 @@ def register(username, password):
     if user_exists(username):
         db.close()
         return "Username is already taken."
-    coms, date = fetch_git.get_commits(username)
-    c.execute("INSERT INTO user (user_id, password, commits, lastcomm) VALUES (?, ?, ?, ?)", (username, password, coms, date))
+    try:
+        coms, date = fetch_git.get_commits(username)
+    except Exception:
+        coms, date = 0, ""
+    starting_balance = coms + 100
+    c.execute("INSERT INTO user (user_id, password, commits, lastcomm) VALUES (?, ?, ?, ?)", (username, password, starting_balance, date))
     db.commit()
     db.close()
     return "Registered"

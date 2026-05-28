@@ -1,1 +1,83 @@
-profile
+{% extends "header.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div>
+    <h1>{{ user }}</h1>
+
+    <p>
+        Balance:
+        <span>{{ balance }} commits</span>
+    </p>
+</div>
+
+<div>
+    <h2>Your bets</h2>
+
+    {% if bets %}
+    <table>
+        <thead>
+            <tr>
+                <th>Market</th>
+                <th>Side</th>
+                <th>Amount</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for b in bets %}
+            <tr>
+                <td>
+                    <a href="/market/{{ b.market_id }}">
+                        {{ b.title }}
+                    </a>
+                </td>
+
+                <td>{{ b.side | upper }}</td>
+
+                <td>{{ b.amount }}</td>
+
+                <td>
+                    {% if b.status == 'resolved' %}
+                    {% if b.side == b.result %}
+                    <span>won</span>
+                    {% else %}
+                    <span>lost</span>
+                    {% endif %}
+                    {% else %}
+                    open
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No bets yet.</p>
+    {% endif %}
+</div>
+
+<div>
+    <h2>Markets you created</h2>
+
+    {% if markets %}
+    <ul>
+        {% for m in markets %}
+        <li>
+            <a href="/market/{{ m.id }}">
+                {{ m.title }}
+            </a>
+
+            <span>
+                [{{ m.status }}{% if m.result %}: {{ m.result }}{% endif %}]
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No markets created.</p>
+    {% endif %}
+</div>
+{% endblock %}

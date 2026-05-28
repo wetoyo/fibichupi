@@ -1,9 +1,20 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <title></title>
-  </head>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+    {% block title %}{% endblock %}
+  </title>
+</head>
+
+<body>
+  <p>FIBICHUPI</p>
+  {% block content %}{% endblock %}
+
+  {% block script %}{% endblock %}
+</body>
+
 </html>
