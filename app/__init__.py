@@ -1,13 +1,27 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, jsonify, flash
 import auth
+import data
 app = Flask(__name__)
 app.secret_key = '5d13cfb7ed33261d8f37a3d1b54632e67c328d6f674a174cefd31ac5d1938e66'
 
-@app.route("/", methods=["GET", "POST"])
+
+def current_user():
+    return session.get("user_id")
+
+def require_login():
+    return current_user() is not None
+
+@app.route("/", methods=["GET"])
 def homepage():
-    if "user_id" not in session:
+    if not require_login():
         return redirect(url_for("login"))
-    return render_template("home.html")
+    markets = data.get_all_markets()
+    for m in markets:
+        m["price"] = data.current_price(m["id"])
+    return render_template("home.html",
+                           markets=markets,
+                           user=current_user(),
+                           balance=data.get_balance(current_user()))
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -103,6 +117,11 @@ def resolve(market_id):
     if msg != "ok":
         flash(msg)
     return redirect(url_for("market", market_id=market_id))
+
+
+@app.route("/market/<int:market_id>/history.json")
+def history_json(market_id):
+    return jsonify(data.get_price_history(market_id))
 
 
 @app.route("/profile", methods=["GET"])
