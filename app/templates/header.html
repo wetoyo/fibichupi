@@ -1,20 +1,40 @@
 <!doctype html>
 <html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{% block title %}{% endblock %} - iMarket</title>
+  </head>
+  <body class="bg-slate-900 text-slate-100 min-h-screen">
+    <nav class="bg-slate-800 border-b border-slate-700 px-6 py-3 flex items-center justify-between">
+      <a href="/" class="text-xl font-bold text-emerald-400">iMarket</a>
+      <div class="flex items-center gap-4 text-sm">
+        {% if user %}
+          <a href="/" class="hover:text-emerald-400">Markets</a>
+          <a href="/create_market" class="hover:text-emerald-400">Create</a>
+          <a href="/profile" class="hover:text-emerald-400">Profile</a>
+          {% if balance is defined %}
+            <span class="px-3 py-1 rounded-full bg-emerald-700/40 text-emerald-200">{{ balance }} commits</span>
+          {% endif %}
+          <span class="text-slate-400">{{ user }}</span>
+          <a href="/logout" class="text-slate-400 hover:text-red-400">Logout</a>
+        {% endif %}
+      </div>
+    </nav>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="max-w-4xl mx-auto mt-4 px-4">
+          {% for msg in messages %}
+            <div class="bg-red-900/40 border border-red-700 text-red-200 px-4 py-2 rounded mb-2">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
 
-  <title>
-    {% block title %}{% endblock %}
-  </title>
-</head>
+    <main class="max-w-4xl mx-auto p-6">{% block content %}{% endblock %}</main>
 
-<body>
-  <p>FIBICHUPI</p>
-  {% block content %}{% endblock %}
-
-  {% block script %}{% endblock %}
-</body>
-
+    {% block script %}{% endblock %}
+  </body>
 </html>

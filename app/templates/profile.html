@@ -3,81 +3,57 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-<div>
-    <h1>{{ user }}</h1>
-
-    <p>
-        Balance:
-        <span>{{ balance }} commits</span>
-    </p>
+<div class="bg-slate-800 border border-slate-700 rounded-lg p-6 mb-4">
+  <h1 class="text-2xl font-bold">{{ user }}</h1>
+  <p class="text-slate-400 mt-1">Balance: <span class="text-emerald-400 font-semibold">{{ balance }} commits</span></p>
 </div>
 
-<div>
-    <h2>Your bets</h2>
-
-    {% if bets %}
-    <table>
-        <thead>
-            <tr>
-                <th>Market</th>
-                <th>Side</th>
-                <th>Amount</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {% for b in bets %}
-            <tr>
-                <td>
-                    <a href="/market/{{ b.market_id }}">
-                        {{ b.title }}
-                    </a>
-                </td>
-
-                <td>{{ b.side | upper }}</td>
-
-                <td>{{ b.amount }}</td>
-
-                <td>
-                    {% if b.status == 'resolved' %}
-                    {% if b.side == b.result %}
-                    <span>won</span>
-                    {% else %}
-                    <span>lost</span>
-                    {% endif %}
-                    {% else %}
-                    open
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    {% else %}
-    <p>No bets yet.</p>
-    {% endif %}
-</div>
-
-<div>
-    <h2>Markets you created</h2>
-
-    {% if markets %}
-    <ul>
-        {% for m in markets %}
-        <li>
-            <a href="/market/{{ m.id }}">
-                {{ m.title }}
-            </a>
-
-            <span>
-                [{{ m.status }}{% if m.result %}: {{ m.result }}{% endif %}]
-            </span>
-        </li>
+<div class="bg-slate-800 border border-slate-700 rounded-lg p-6 mb-4">
+  <h2 class="font-semibold mb-3">Your bets</h2>
+  {% if bets %}
+    <table class="w-full text-sm">
+      <thead class="text-left text-slate-400 border-b border-slate-700">
+        <tr><th class="pb-2">Market</th><th class="pb-2">Side</th><th class="pb-2">Amount</th><th class="pb-2">Status</th></tr>
+      </thead>
+      <tbody>
+        {% for b in bets %}
+          <tr class="border-b border-slate-700/50">
+            <td class="py-1"><a href="/market/{{ b.market_id }}" class="hover:text-emerald-400">{{ b.title }}</a></td>
+            <td class="py-1 {% if b.side == 'yes' %}text-emerald-400{% else %}text-red-400{% endif %}">{{ b.side | upper }}</td>
+            <td class="py-1">{{ b.amount }}</td>
+            <td class="py-1 text-slate-400">
+              {% if b.status == 'resolved' %}
+                {% if b.side == b.result %}
+                  <span class="text-emerald-400">won</span>
+                {% else %}
+                  <span class="text-red-400">lost</span>
+                {% endif %}
+              {% else %}
+                open
+              {% endif %}
+            </td>
+          </tr>
         {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-slate-400 text-sm">No bets yet.</p>
+  {% endif %}
+</div>
+
+<div class="bg-slate-800 border border-slate-700 rounded-lg p-6">
+  <h2 class="font-semibold mb-3">Markets you created</h2>
+  {% if markets %}
+    <ul class="space-y-1">
+      {% for m in markets %}
+        <li>
+          <a href="/market/{{ m.id }}" class="hover:text-emerald-400">{{ m.title }}</a>
+          <span class="text-xs text-slate-500 ml-2">[{{ m.status }}{% if m.result %}: {{ m.result }}{% endif %}]</span>
+        </li>
+      {% endfor %}
     </ul>
-    {% else %}
-    <p>No markets created.</p>
-    {% endif %}
+  {% else %}
+    <p class="text-slate-400 text-sm">No markets created.</p>
+  {% endif %}
 </div>
 {% endblock %}

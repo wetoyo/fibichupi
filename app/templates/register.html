@@ -3,20 +3,23 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-<div>
-  <h1>Register</h1>
-  <p>Use your GitHub username — commits become your starting balance.</p>
+<div class="max-w-sm mx-auto bg-slate-800 border border-slate-700 rounded-lg p-6 mt-12">
+  <h1 class="text-2xl font-bold mb-2">Register</h1>
+  <p class="text-sm text-slate-400 mb-4">Use your GitHub username — commits become your starting balance.</p>
 
   <form method="POST" class="space-y-3">
-    <input type="text" name="user_id" placeholder="GitHub username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Register</button>
+    <input type="text" name="user_id" placeholder="GitHub username" required
+           class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+    <input type="password" name="password" placeholder="Password" required
+           class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2">
+    <button type="submit"
+            class="w-full bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded font-semibold">Register</button>
   </form>
 
-  {% if error %}<p>{{ error }}</p>{% endif %}
+  {% if error %}<p class="text-red-400 text-sm mt-3">{{ error }}</p>{% endif %}
 
-  <p>Already have an account?
-    <a href="/login">Login</a>
+  <p class="text-sm text-slate-400 mt-4">Already have an account?
+    <a href="/login" class="text-emerald-400 hover:underline">Login</a>
   </p>
 </div>
 {% endblock %}
