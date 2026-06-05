@@ -91,3 +91,6 @@ worked on finishing the routes
 
 -- jakel110 5/25/26 14:00
 added more helper functions in data.py
+
+-- wesleyl30 6/05/26 10:27
+thought about potential ideas (leaderbord) maybe update design doc !!
