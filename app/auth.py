@@ -22,7 +22,7 @@ def user_exists(username):
 #checks if username input has special characters besides _
 def user_valid(username):
     for charac in username:
-        if not (charac.isalnum() or charac == "_"):
+        if not (charac.isalnum() or charac == "_" or charac == "-"):
             return False
     return True
 
@@ -52,7 +52,7 @@ def register(username, password):
         coms, date = fetch_git.get_commits(username)
     except Exception:
         coms, date = 0, ""
-    starting_balance = coms + 100
+    starting_balance = coms
     c.execute("INSERT INTO user (user_id, password, commits, lastcomm) VALUES (?, ?, ?, ?)", (username, password, starting_balance, date))
     db.commit()
     db.close()
