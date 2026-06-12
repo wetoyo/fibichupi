@@ -124,11 +124,13 @@ def history_json(market_id):
     return jsonify(data.get_price_history(market_id))
 
 
-@app.route("/profile", methods=["GET"])
+@app.route("/profile", methods=["GET", "POST"])
 def profile():
     if not require_login():
         return redirect(url_for("login"))
     user = current_user()
+    if request.method == "POST":
+        data.update_commits(session["user_id"])
     return render_template(
         "profile.html",
         user=user,
@@ -138,5 +140,5 @@ def profile():
     )
 
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = False
     app.run()

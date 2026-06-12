@@ -94,3 +94,12 @@ added more helper functions in data.py
 
 -- wesleyl30 6/05/26 10:27
 thought about potential ideas (leaderbord) maybe update design doc !!
+
+-- kylel114 6/12/26 10:42
+added refresh commit button
+
+-- jakel110 6/12/26 10:42
+fixed update commits
+
+-- wesleyl30 6/12/26 10:42
+pm duties

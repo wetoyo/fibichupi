@@ -164,8 +164,9 @@ def resolve_market(market_id, result, user_id):
     return "ok"
 
 def update_commits(user_id):
-    coms, date = get_commits(user_id)
     db = _conn()
+    since = db.execute("SELECT lastcomm FROM user WHERE user_id = ?", user_id)
+    coms, date = get_commits(user_id, since)
     db.execute("UPDATE user SET commits = commits + ?, lastcomm = ? WHERE user_id = ?",
                (coms, date, user_id))
     db.commit()
