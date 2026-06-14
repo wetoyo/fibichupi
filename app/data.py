@@ -1,5 +1,5 @@
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timezone
 from fetch_git import get_commits
 
 DB_FILE = "database.db"
@@ -165,7 +165,10 @@ def resolve_market(market_id, result, user_id):
 
 def update_commits(user_id):
     db = _conn()
-    since = db.execute("SELECT lastcomm FROM user WHERE user_id = ?", user_id)
+    row = db.execute("SELECT lastcomm FROM user WHERE user_id = ?", (user_id,)).fetchone()
+    since = None
+    if row and row["lastcomm"]:
+        since = datetime.strptime(row["lastcomm"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     coms, date = get_commits(user_id, since)
     db.execute("UPDATE user SET commits = commits + ?, lastcomm = ? WHERE user_id = ?",
                (coms, date, user_id))
