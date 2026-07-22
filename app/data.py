@@ -92,6 +92,8 @@ def place_bet(user_id, market_id, side, amount):
     market = get_market(market_id)
     if not market:
         return "Market not found."
+    if market["creator_id"] == user_id:
+        return "You cannot bet on your own market."
     if market["status"] != "open":
         return "Market is closed."
     if get_balance(user_id) < amount:
@@ -170,7 +172,8 @@ def update_commits(user_id):
     if row and row["lastcomm"]:
         since = datetime.strptime(row["lastcomm"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     coms, date = get_commits(user_id, since)
-    db.execute("UPDATE user SET commits = commits + ?, lastcomm = ? WHERE user_id = ?",
-               (coms, date, user_id))
-    db.commit()
+    if coms != 0:
+        db.execute("UPDATE user SET commits = commits + ?, lastcomm = ? WHERE user_id = ?",
+                   (coms, date, user_id))
+        db.commit()
     db.close()

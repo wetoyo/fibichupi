@@ -1,6 +1,6 @@
 import requests
 from datetime import datetime, timedelta, timezone
-TOKEN = "tolkien"
+TOKEN = "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"
 
 def get_commits(user: str, since=None):
     if since is None:
@@ -28,7 +28,7 @@ def get_commits(user: str, since=None):
             created_at = e.get("created_at")
             if created_at:
                 created_date = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-                if since and created_date < since:
+                if since and created_date <= since:
                     return total, last_date
 
             if e.get("type") == "PushEvent":
@@ -52,4 +52,5 @@ def get_commits(user: str, since=None):
 
 if __name__ == "__main__":
     c, d = get_commits("wetoyo")
-    print(c)
+    d_time = datetime.strptime(d, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    print(get_commits("wetoyo", d_time))
